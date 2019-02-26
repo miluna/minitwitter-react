@@ -6,19 +6,19 @@ export class CommentService implements CrudService<UserComment>{
     }
 
     getAll(): Array<UserComment> {
-        return undefined;
+        return [];
     }
 
     getOne(id: number): UserComment {
-        return undefined;
+        return {};
     }
 
     postOne(object: UserComment): UserComment {
-        return undefined;
+        return {};
     }
 
     updateOne(id: number, object: UserComment): UserComment {
-        return undefined;
+        return {};
     }
 
 }

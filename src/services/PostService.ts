@@ -6,19 +6,19 @@ export class PostService implements CrudService<Post>{
     }
 
     getAll(): Array<Post> {
-        return undefined;
+        return [];
     }
 
     getOne(id: number): Post {
-        return undefined;
+        return {};
     }
 
     postOne(object: Post): Post {
-        return undefined;
+        return {};
     }
 
     updateOne(id: number, object: Post): Post {
-        return undefined;
+        return {};
     }
 
     likePost(postId: number, userId: number): void{

@@ -23,4 +23,8 @@ export class UserService  implements CrudService<User>{
         return mockedUser;
     }
 
+    login(username: string, password: string): User {
+        return mockedUser;
+    }
+
 }

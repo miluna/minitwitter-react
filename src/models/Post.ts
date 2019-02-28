@@ -2,8 +2,8 @@ import {UserComment} from "./Comment";
 import {User} from "./User";
 
 export interface Post {
-    id?: number;
-    userId?: number;
+    id?: string;
+    userId?: string;
     content?: string;
     timestamp?: Date;
     picture?: string;

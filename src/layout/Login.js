@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { UserService } from '../services/UserService';
 import Input from '../components/Input';
+import { withRouter } from 'react-router';
 
-export default class Login extends Component {
+class Login extends Component {
     constructor(props) {
+      super(props);
         this.userService = new UserService();
         this.state = {
             username: '',
@@ -19,7 +21,10 @@ export default class Login extends Component {
   render() {
     return (
       <div>
+        ESTO ES EL LOGIN
       </div>
     )
   }
 }
+
+export default withRouter(Login);

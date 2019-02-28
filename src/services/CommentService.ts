@@ -2,14 +2,14 @@ import {CrudService} from "./CrudService";
 import {UserComment} from "../models/Comment";
 
 export class CommentService implements CrudService<UserComment>{
-    deleteOne(id: number): void {
+    deleteOne(id: string): void {
     }
 
     getAll(): Array<UserComment> {
         return [];
     }
 
-    getOne(id: number): UserComment {
+    getOne(id: string): UserComment {
         return {};
     }
 
@@ -17,7 +17,7 @@ export class CommentService implements CrudService<UserComment>{
         return {};
     }
 
-    updateOne(id: number, object: UserComment): UserComment {
+    updateOne(id: string, object: UserComment): UserComment {
         return {};
     }
 

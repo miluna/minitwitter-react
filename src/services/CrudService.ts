@@ -1,7 +1,7 @@
 export interface CrudService<T> {
     getAll(): Array<T>;
-    getOne(id: number): T;
+    getOne(id: string): T;
     postOne(object: T): T;
-    updateOne(id: number, object: T): T;
-    deleteOne(id: number): void;
+    updateOne(id: string, object: T): T;
+    deleteOne(id: string): void;
 }

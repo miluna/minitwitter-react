@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Feed extends Component {
+class Feed extends Component {
   render() {
     return (
       <div>
@@ -9,3 +9,5 @@ export default class Feed extends Component {
     )
   }
 }
+
+export default withRouter(Feed);

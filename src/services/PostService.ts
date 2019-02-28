@@ -2,14 +2,14 @@ import {CrudService} from "./CrudService";
 import {Post} from "../models/Post";
 
 export class PostService implements CrudService<Post>{
-    deleteOne(id: number): void {
+    deleteOne(id: string): void {
     }
 
     getAll(): Array<Post> {
         return [];
     }
 
-    getOne(id: number): Post {
+    getOne(id: string): Post {
         return {};
     }
 
@@ -17,15 +17,15 @@ export class PostService implements CrudService<Post>{
         return {};
     }
 
-    updateOne(id: number, object: Post): Post {
+    updateOne(id: string, object: Post): Post {
         return {};
     }
 
-    likePost(postId: number, userId: number): void{
+    likePost(postId: string, userId: string): void{
 
     }
 
-    unlikePost(postId: number, userId: number): void {
+    unlikePost(postId: string, userId: string): void {
 
     }
 }

@@ -4,14 +4,14 @@ import {user as mockedUser}  from '../mocked_data';
 import {allUsers as allmockedUsers} from "../mocked_data";
 
 export class UserService  implements CrudService<User>{
-    deleteOne(id: number): void {
+    deleteOne(id: string): void {
     }
 
     getAll(): Array<User> {
         return allmockedUsers;
     }
 
-    getOne(id: number): User {
+    getOne(id: string): User {
         return mockedUser;
     }
 
@@ -19,7 +19,7 @@ export class UserService  implements CrudService<User>{
         return mockedUser;
     }
 
-    updateOne(id: number, object: User): User {
+    updateOne(id: string, object: User): User {
         return mockedUser;
     }
 

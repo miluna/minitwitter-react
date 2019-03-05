@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { UserService } from '../services/UserService';
 import Input from '../components/Input';
 import { withRouter } from 'react-router';
+import Tweet from '../components/Tweet';
 
 class Login extends Component {
     constructor(props) {
@@ -20,8 +21,20 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        ESTO ES EL LOGIN
+      <div className="container">
+        <div className="center">
+          <Input placeholder="Introduce tu nombre de usuario"/>
+          <Tweet 
+            id="1"
+            userPhoto="" 
+            username="Pepesito" 
+            name="Pepe" 
+            tweet="Hola" 
+            date="1m" 
+            onLike={(id) => console.log(id)} 
+            liked
+          />
+        </div>
       </div>
     )
   }

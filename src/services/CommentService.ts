@@ -5,20 +5,20 @@ export class CommentService implements CrudService<UserComment>{
     deleteOne(id: string): void {
     }
 
-    getAll(): Array<UserComment> {
-        return [];
+    getAll(): Promise<Array<UserComment>> {
+        return new Promise((resolve, reject) => resolve([]));
     }
 
-    getOne(id: string): UserComment {
-        return {};
+    getOne(id: string): Promise<UserComment> {
+        return new Promise((resolve, reject) => resolve({}));
     }
 
-    postOne(object: UserComment): UserComment {
-        return {};
+    postOne(object: UserComment): Promise<UserComment> {
+        return new Promise((resolve, reject) => resolve({}));
     }
 
-    updateOne(id: string, object: UserComment): UserComment {
-        return {};
+    updateOne(id: string, object: UserComment): Promise<UserComment> {
+        return new Promise((resolve, reject) => resolve({}));
     }
 
 }

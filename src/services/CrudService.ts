@@ -1,7 +1,7 @@
 export interface CrudService<T> {
-    getAll(): Array<T>;
-    getOne(id: string): T;
-    postOne(object: T): T;
-    updateOne(id: string, object: T): T;
+    getAll(): Promise<Array<T>>;
+    getOne(id: string): Promise<T>;
+    postOne(object: T): Promise<T>;
+    updateOne(id: string, object: T): Promise<T>;
     deleteOne(id: string): void;
 }

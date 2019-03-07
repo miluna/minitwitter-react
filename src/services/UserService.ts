@@ -7,24 +7,24 @@ export class UserService  implements CrudService<User>{
     deleteOne(id: string): void {
     }
 
-    getAll(): Array<User> {
-        return allmockedUsers;
+    getAll(): Promise<Array<User>> {
+        return new Promise((resolve, reject) => resolve(allmockedUsers));
     }
 
-    getOne(id: string): User {
-        return mockedUser;
+    getOne(id: string): Promise<User> {
+        return new Promise((resolve, reject) => resolve(mockedUser));
     }
 
-    postOne(object: User): User {
-        return mockedUser;
+    postOne(object: User): Promise<User> {
+        return new Promise((resolve, reject) => resolve(mockedUser));
     }
 
-    updateOne(id: string, object: User): User {
-        return mockedUser;
+    updateOne(id: string, object: User): Promise<User> {
+        return new Promise((resolve, reject) => resolve(mockedUser));
     }
 
-    login(username: string, password: string): User {
-        return mockedUser;
+    login(username: string, password: string): Promise<User> {
+        return new Promise((resolve, reject) => resolve(mockedUser));
     }
 
 }

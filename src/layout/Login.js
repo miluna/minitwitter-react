@@ -22,7 +22,7 @@ class Login extends Component {
   render() {
     return (
       <div className="container">
-        <div className="center">
+        <div className="login-container">
           <Input placeholder="Introduce tu nombre de usuario"/>
           <Tweet 
             id="1"

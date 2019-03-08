@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { User } from "../models/User";
 import { RouteChildrenProps } from "react-router";
 import { UserService } from "../services/UserService";
@@ -15,8 +15,7 @@ interface ContextState {
     isAuthenticated?: boolean,
     login?: Function,
     logout?: Function,
-    error?: string,
-    userService: UserService
+    error?: string
 }
 
 
@@ -27,8 +26,7 @@ export class LoggedInContextProvider extends Component<ContextProps, ContextStat
             isAuthenticated: false,
             login: this.login,
             logout: this.logout,
-            error: '',
-            userService: this.props.userService
+            error: ''
         };
     }
 

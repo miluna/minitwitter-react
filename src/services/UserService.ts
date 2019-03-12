@@ -25,6 +25,8 @@ export class UserService  implements CrudService<User>{
 
     login(username: string, password: string): Promise<User> {
         return new Promise((resolve, reject) => resolve(mockedUser));
+
+        // return new Promise((resolve, reject) => reject({error: "Pakete"}));
     }
 
 }

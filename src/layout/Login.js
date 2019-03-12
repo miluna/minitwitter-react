@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { UserService } from '../services/UserService';
 import Input from '../components/Input';
-import { withRouter, Redirect } from 'react-router';
+import { withRouter } from 'react-router';
 import {LoggedInContext} from '../context/LoggedInContext';
 import Button from '../components/Button';
 
@@ -23,7 +23,7 @@ class Login extends Component {
 
     return (
       <LoggedInContext.Consumer>
-        {({ login }) => (
+        {({ login, error }) => (
           <div className="container">
           <div className="login-container">
             <Input
@@ -38,6 +38,7 @@ class Login extends Component {
               onChange={(e) => this.updatePassword(e.target.value)}
             />
             <Button text="Log In" color="primary" onClick={() => login(username, password)} />
+            { error !== "" && <p style={{color: 'red'}}>{error}</p>}
           </div>
         </div>
         )}

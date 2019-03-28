@@ -1,39 +1,33 @@
 import React from 'react';
 import Icon from './Icon';
+import { Post } from '../models/Post';
 
 
-interface TweetProps {
-    id?: string,
-    userPhoto?: string,
+interface TweetProps extends Post {
     key?: string,
-    username: string,
-    date?: string,
-    name: string,
-    tweet: string,
-    liked?: boolean,
     onLike?: Function,
 }
 
 
 const Tweet = (props: TweetProps) => {
 
-    const { id, userPhoto, key, username, name, tweet, date, liked, onLike } = props;
+    const { id, comments, key, content, error, likes, picture, timestamp, onLike, userId } = props;
 
-    const icon = <Icon id={id} iconName="heart" checked={liked} key={key} onClick={onLike}/>
+    const icon = <Icon id={id} iconName="heart" checked={true} key={key} onClick={onLike}/>
 
     return (
         <div className="media">
             <div className="media-left">
                 <p className="image is-64x64">
-                    <img src={userPhoto} />
+                    <img src={picture} />
                 </p>
             </div>
             <div className="media-content">
                 <div className="content">
                     <p>
-                        <strong>{name}</strong> <small>@{username}</small> <small>{date}</small>
+                        <strong>{name}</strong> <small>@{userId}</small> <small>{timestamp}</small>
                         <br />
-                        {tweet}
+                        {content}
                     </p>
                 </div>
                 <nav className="level is-mobile">

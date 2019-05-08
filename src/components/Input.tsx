@@ -9,6 +9,7 @@ interface InputProps {
     onChange: any, 
     onKeyPress: any,
     label: string,
+    regExp: RegExp,
     validation: Function,
     errorMessage: string,
 }
@@ -16,7 +17,7 @@ interface InputProps {
 
 const Input = (props: InputProps): ReactElement => {
     const { className, placeholder, type, value, 
-        onChange, onKeyPress, label, validation, errorMessage } = props;
+        onChange, onKeyPress, label, regExp, validation, errorMessage } = props;
 
     const labelComponent = label ? <label>{label}</label> : null;
 
@@ -31,15 +32,20 @@ const Input = (props: InputProps): ReactElement => {
         />
     );
 
-    const error = validation(value) 
-        ? <React.Fragment/> 
-        : <p style={{color: 'red'}}>{errorMessage}</p>;
-
+    let error = false;
+    if (validation && regExp && value !== "") {
+        error = !regExp.test(value) && !validation(value);
+    } else if (regExp && value !== "") {
+        error = !regExp.test(value);
+    } else if (validation && value !== "") {
+        error = !validation(value);
+    }
+    console.log(error);
     return (
         <div className="input-margin">
             {labelComponent}
             {inputComponent}
-            {error}
+            {error && <p style={{color: 'red'}}>{errorMessage}</p>}
         </div>
     );
 }
@@ -52,8 +58,9 @@ Input.defaultProps = {
     onChange: () => {}, 
     onKeyPress: () => {},
     label: "",
-    validation: () => {},
-    errorMessage: "",
+    regExp: undefined,
+    validation: undefined,
+    errorMessage: "Format error",
 };
 
 export default Input;

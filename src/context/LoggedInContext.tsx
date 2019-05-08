@@ -28,6 +28,7 @@ export class LoggedInContextProvider extends Component<ContextProps, ContextStat
     constructor(props: ContextProps) {
         super(props);
         this.state = {
+            user: undefined,
             isAuthenticated: false,
             login: this.login,
             logout: this.logout,
@@ -40,67 +41,35 @@ export class LoggedInContextProvider extends Component<ContextProps, ContextStat
 
     login = (email: string, password: string) => {
         const { userService } = this.props;
-
-        if (!validateEmail(email)) {
-            this.setState({error: "Email format incorrect"})
-        } else if (!validatePasswordComplexity(password)) {
-            this.setState({error: "Password should contain uppercase, lowercase, number and a special character"})
-        } else {
-            userService.login(email, password)
+        userService.login(email, password)
             .then(auth => {
                 this.setState({isAuthenticated: true});
                 if (auth.Authorization) localStorage.setItem("token", auth.Authorization);
                 this.props.history.push("/");
             })
             .catch((auth: Authentication) => this.setState({error: auth.error}));
-        }
     }
 
     changePassword = (email: string, password: string, password2: string, passwordConfirm: string) => {
         const { userService } = this.props;
-
-        if (password2 !== passwordConfirm) {
-            this.setState({error: "New password and password confirmation do not match"})
-        } else if (!validateLength(password2, 6)) {
-            this.setState({error: "New password is too short"})
-        } else if (!validatePasswordComplexity(password2)) {
-            this.setState({error: "Password should contain uppercase, lowercase, number and a special character"})
-        } else {
-            userService.changePassword(email, password, password2)
-                .then(user => console.log(user))
-                .catch(user => this.setState({error: user.error}))
-        }
+        userService.changePassword(email, password, password2, passwordConfirm)
+            .then(user => console.log(user))
+            .catch(user => this.setState({error: user.error}))
     }
 
     resetPassword = (email: string) => {
         const { userService } = this.props;
-
-        if (!validateEmail(email)) {
-            this.setState({error: "Email format incorrect"})
-        } else {
-            userService.resetPassword(email)
-                .then(user => console.log(user))
-                .catch(user => this.setState({error: user.error}))
-        }
+        userService.resetPassword(email)
+            .then(user => console.log(user))
+            .catch(user => this.setState({error: user.error}))
     }
 
     register = (email: string, password: string, passwordConfirm: string) => {
         const { userService } = this.props;
-
-        if (!validateEmail(email)) {
-            this.setState({error: "Email format incorrect"})
-        } else if (password !== passwordConfirm) {
-            this.setState({error: "New password and password confirmation do not match"})
-        } else if (!validateLength(password, 6)) {
-            this.setState({error: "New password is too short"})
-        } else if (!validatePasswordComplexity(password)) {
-            this.setState({error: "Password should contain uppercase, lowercase, number and a special character"})
-        } else {
-            const newUser: User = { email, password };
-            userService.postOne(newUser)
-                .then(user => console.log(user))
-                .catch(user => this.setState({error: user.error}))
-        }
+        const newUser: User = { email, password, password2: passwordConfirm };
+        userService.postOne(newUser)
+            .then(user => console.log(user))
+            .catch(user => this.setState({error: user.error}))
     }
 
     logout = () => {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Input from '../components/Input';
 import AppLogo from '../components/AppLogo';
 import Button from '../components/Button';
+import { validatePasswordComplexity } from '../utils/validation';
 
 const LoginContainer = ({ 
     mode, emailValue, passValue, pass2Value, passConfirmValue, 
@@ -15,6 +16,8 @@ const LoginContainer = ({
           placeholder="Insert your email"
           type="text"
           onChange={(e) => updateEmail(e.target.value)}
+          regExp={/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/}
+          errorMessage="Email format incorrect"
           value={emailValue}
         />
     );
@@ -24,6 +27,8 @@ const LoginContainer = ({
             label="Password"
             placeholder="Insert your password"
             type="password"
+            validation={validatePasswordComplexity}
+            errorMessage="Should contain uppercase, lowercase, number and a special character"
             onChange={(e) => updatePassword(e.target.value)}
             value={passValue}
         />
@@ -34,6 +39,8 @@ const LoginContainer = ({
             label="New Password"
             placeholder="Insert your new password"
             type="password"
+            validation={validatePasswordComplexity}
+            errorMessage="Should contain uppercase, lowercase, number and a special character"
             onChange={(e) => updatePassword2(e.target.value)}
             value={pass2Value}
         />
@@ -44,6 +51,8 @@ const LoginContainer = ({
             label="Confirm your password"
             placeholder="Confirm your new password"
             type="password"
+            validation={validatePasswordComplexity}
+            errorMessage="Should contain uppercase, lowercase, number and a special character"
             onChange={(e) => updatePasswordConfirm(e.target.value)}
             value={passConfirmValue}
         />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { UserService } from '../services/UserService';
+import { UserService } from '../../services/UserService';
 import { withRouter } from 'react-router';
-import {LoggedInContext} from '../context/LoggedInContext';
+import {LoggedInContext} from '../../context/LoggedInContext';
 import LoginContainer from './LoginContainer';
 
 const modes = ['login', 'change-pass', 'reset-pass', 'register'];

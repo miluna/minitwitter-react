@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { User } from "../models/User";
 import { RouteChildrenProps } from "react-router";
 import { UserService } from "../services/UserService";
-import { validateLength, validatePasswordComplexity, validateEmail } from "../utils/validation";
 import { Authentication } from "../models/Authentication";
 
 // register context

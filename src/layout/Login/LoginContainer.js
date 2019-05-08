@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Input from '../components/Input';
-import AppLogo from '../components/AppLogo';
-import Button from '../components/Button';
-import { validatePasswordComplexity } from '../utils/validation';
+import Input from '../../components/Input';
+import AppLogo from '../../components/AppLogo';
+import Button from '../../components/Button';
+import { validatePasswordComplexity } from '../../utils/validation';
 
 const LoginContainer = ({ 
     mode, emailValue, passValue, pass2Value, passConfirmValue, 

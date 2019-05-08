@@ -25,7 +25,7 @@ const Tweet = (props: TweetProps) => {
             <div className="media-content">
                 <div className="content">
                     <p>
-                        <strong>{name}</strong> <small>@{userId}</small> <small>{timestamp}</small>
+                        {/* <strong>{name}</strong> <small>@{userId}</small> <small>{timestamp}</small> */}
                         <br />
                         {content}
                     </p>

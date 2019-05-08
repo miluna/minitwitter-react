@@ -6,7 +6,7 @@ const AppLogo = (props: any) => {
     const { className } = props;
   return (
     <div className={className} >
-        <img src={logo} />
+        <img src={logo} alt="app-logo"/>
     </div>
   )
 };

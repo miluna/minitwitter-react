@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router";
-import { UserService } from '../services/UserService';
+import { UserService } from '../../services/UserService';
 
 class Profile extends Component {
   constructor(props) {

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { CommentService } from '../services/CommentService';
-import { PostService } from '../services/PostService';
-import { UserService } from '../services/UserService';
+import { CommentService } from '../../services/CommentService';
+import { PostService } from '../../services/PostService';
+import { UserService } from '../../services/UserService';
 import { withRouter } from 'react-router';
-import UserCard from '../components/UserCard';
-import Tweet from '../components/Tweet';
+import UserCard from '../../components/UserCard';
+import Tweet from '../../components/Tweet';
 
 class Feed extends Component {
   constructor(props) {

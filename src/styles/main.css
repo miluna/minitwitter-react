@@ -7,6 +7,11 @@
     --item-color: #e2e2e2;
 }
 
+.app-logo {
+    height: 18vh;
+    width: 8vw;
+}  
+
 body {
     height: 100vh;
     width: 100vw;
@@ -18,15 +23,26 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 40%;
-    position: relative;
-    top: 4rem;
-    left: 0;
-    right: 0;
+    width: 30%;
     margin: auto;
     padding: 2rem;
-    border-radius: 1rem;
+    border-radius: 0.6rem;
     background-color: var(--item-color);
     opacity: 0.95;
+}
+
+.input-margin {
+    margin: 0.3rem;
+    width: 100%;
+}
+
+.btn-margin {
+    margin: 0.3rem;
+}
+
+.login-left-btns {
+    width: 100%;
+    text-align: right;
+    color: var(--primary-color);
 }
 

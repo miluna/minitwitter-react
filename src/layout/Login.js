@@ -1,49 +1,57 @@
 import React, { Component } from 'react'
 import { UserService } from '../services/UserService';
-import Input from '../components/Input';
 import { withRouter } from 'react-router';
 import {LoggedInContext} from '../context/LoggedInContext';
-import Button from '../components/Button';
+import LoginContainer from './LoginContainer';
+
+const modes = ['login', 'change-pass', 'reset-pass', 'register'];
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.userService = new UserService();
     this.state = {
-      username: '',
+      email: '',
       password: '',
+      password2: '',
+      passwordConfirm: '',
+      mode: modes[0],
     }
   }
 
-  updateUsername = (text) => this.setState({ username: text })
+  updateEmail = (text) => this.setState({ email: text })
   updatePassword = (text) => this.setState({ password: text })
+  updatePassword2 = (text) => this.setState({ password2: text })
+  updatePasswordConfirm = (text) => this.setState({ passwordConfirm: text })
+  updateMode = (mode) => this.setState({ mode })
 
   render() {
-    const { username, password } = this.state;
+    const { email, password, password2, passwordConfirm, mode } = this.state;
 
     return (
       <LoggedInContext.Consumer>
-        {({ login, error }) => (
+        {({ login, changePassword, resetPassword, register, error }) => (
           <div className="container">
-          <div className="login-container">
-            <Input
-              placeholder="Introduce nombre de usuario"
-              type="text"
-              onChange={(e) => this.updateUsername(e.target.value)}
-              value={this.state.username}
-            />
-            <Input
-              placeholder="Introduce contraseña"
-              type="password"
-              onChange={(e) => this.updatePassword(e.target.value)}
-            />
-            <Button text="Log In" color="primary" onClick={() => login(username, password)} />
-            { error !== "" && <p style={{color: 'red'}}>{error}</p>}
-          </div>
+          <LoginContainer 
+            emailValue={email}
+            passValue={password}
+            pass2Value={password2}
+            passConfirmValue={passwordConfirm}
+            mode={mode}
+            error={error}
+            login={login}
+            changePassword={changePassword}
+            resetPassword={resetPassword}
+            register={register}
+            updateMode={this.updateMode}
+            updateEmail={this.updateEmail}
+            updatePassword={this.updatePassword}
+            updatePassword2={this.updatePassword2}
+            updatePasswordConfirm={this.updatePasswordConfirm}
+          />
         </div>
         )}
       </LoggedInContext.Consumer>
-        
     )
   }
 }

@@ -11,7 +11,9 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
 
     const cssClassName = color ? `button is-${color}` : "button" ;
     return (
-        <button className={cssClassName} onClick={onClick}>{text}</button>
+        <div className="btn-margin">
+            <button className={cssClassName} onClick={onClick}>{text}</button>
+        </div>
     );
 };
 

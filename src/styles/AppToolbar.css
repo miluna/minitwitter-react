@@ -1,0 +1,12 @@
+.app-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--item-color);
+    height: 3rem;
+    padding: 0 10%;
+}
+
+.toolbar-btns {
+    display: flex;
+}

@@ -14,7 +14,7 @@
 .toolbar-btn {
     border-bottom: 0.1rem solid transparent;
     transition: 0.2s ease;
-    background-color: none;
+    background-color: transparent;
     margin: 0 1.5rem;
 }
 

@@ -50,3 +50,15 @@ body {
     color: var(--primary-color);
 }
 
+.feed-container {
+    display: flex;
+}
+
+.user-card {
+    margin: 3rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    width: 25rem;
+    height: 15rem;
+    background-color: var(--item-color);
+}

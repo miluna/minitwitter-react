@@ -10,7 +10,11 @@
 .app-logo {
     height: 18vh;
     width: 8vw;
-}  
+}
+
+.app-logo-toolbar {
+    width: 5vw;
+}
 
 body {
     height: 100vh;

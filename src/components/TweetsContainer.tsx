@@ -17,7 +17,7 @@ const TweetsContainer = (props: TweetsContainerProps) => {
   ));
 
   return (
-      <div>
+      <div className="feed-element tweet-list">
           <TweetInput />
           {tweetList}
       </div>

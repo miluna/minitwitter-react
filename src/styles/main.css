@@ -5,6 +5,7 @@
 :root {
     --primary-color: #008cff;
     --item-color: #e2e2e2;
+    --item-color-darker: rgba(200, 200, 200, 0.11);
 }
 
 .app-logo {
@@ -51,14 +52,33 @@ body {
 }
 
 .feed-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 30% auto 30%;
+    grid-auto-rows: auto;
+}
+
+.feed-element {
+    margin: 2rem;
+    padding: 1.5rem;
+    border-radius: 0.4rem;
+    background-color: var(--item-color);
 }
 
 .user-card {
-    margin: 3rem;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    width: 25rem;
-    height: 15rem;
-    background-color: var(--item-color);
+    height: 14rem;
+}
+
+.tweet-list {
+    height: auto;
+}
+
+.tweet {
+    padding: 1rem;
+    height: 100%;
+    width: 100%;
+    background-color: var(--item-color-darker);
+}
+
+.tweet #tweet-btn {
+    text-align: end;
 }

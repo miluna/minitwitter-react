@@ -14,7 +14,7 @@ const UserCard = (props: UserCardProps): ReactElement => {
     const { id, key, username, name, picture, location, webpage, description } = props;
 
     return (
-        <div className="user-card" id={`usercard-${id}`} key={key} >
+        <div className="feed-element user-card" id={`usercard-${id}`} key={key} >
             <UserInfo
                 picture={picture}
                 username={username}

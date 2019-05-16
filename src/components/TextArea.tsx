@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react';
 
 
-interface InputProps {
-    placeholder: string, 
-    type: string, 
-    value: string, 
-    onChange: any, 
+interface TextAreaProps {
+    placeholder: string,
+    value: string,
+    onChange: any,
     onKeyPress: any,
     label: string,
     regExp: RegExp,
@@ -14,17 +13,16 @@ interface InputProps {
 }
 
 
-const Input = (props: InputProps): ReactElement => {
-    const { placeholder, type, value,
+const TextArea = (props: TextAreaProps): ReactElement => {
+    const { placeholder, value,
         onChange, onKeyPress, label, regExp, validation, errorMessage } = props;
 
     const labelComponent = label ? <label>{label}</label> : null;
 
     const inputComponent = (
-        <input 
-            className="input"
+        <textarea
+            className="textarea"
             placeholder={placeholder}
-            type={type}
             value={value}
             onChange={onChange}
             onKeyPress={onKeyPress}
@@ -42,17 +40,16 @@ const Input = (props: InputProps): ReactElement => {
     return (
         <div className="input-margin">
             {labelComponent}
-            {inputComponent}
-            {error && <p style={{color: 'red'}}>{errorMessage}</p>}
+        {inputComponent}
+        {error && <p style={{color: 'red'}}>{errorMessage}</p>}
         </div>
     );
 };
 
-Input.defaultProps = {
-    placeholder: "", 
-    type: "text", 
-    value: "", 
-    onChange: () => {}, 
+TextArea.defaultProps = {
+    placeholder: "",
+    value: "",
+    onChange: () => {},
     onKeyPress: () => {},
     label: "",
     regExp: undefined,
@@ -60,4 +57,4 @@ Input.defaultProps = {
     errorMessage: "Format error",
 };
 
-export default Input;
+export default TextArea;

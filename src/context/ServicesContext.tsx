@@ -3,7 +3,7 @@ import { UserService } from "../services/UserService";
 import { PostService } from "../services/PostService";
 import { CommentService } from "../services/CommentService";
 
-interface ContextProps {
+export interface ContextProps {
     userService: UserService,
     postService: PostService,
     commentService: CommentService,

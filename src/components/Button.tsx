@@ -3,17 +3,26 @@ import uuid from "uuid/v4";
 
 interface ButtonProps {
     key: string,
+    id: string,
     text: string,
     onClick?: any,
-    color?: string,
+    primary?: boolean,
+    danger?: boolean,
+    secondary?: boolean,
 }
 
 const Button = (props: ButtonProps) => {
-    const { key, text, onClick, color } = props;
+    const { key, id, text, onClick, primary, danger, secondary } = props;
 
-    const cssClassName = color ? `button is-${color}` : "button" ;
+    const cssClassName = danger
+        ? `button is-danger`
+        : primary
+            ? "button is-primary"
+            : secondary
+                ? "button is-secondary"
+                : "button";
     return (
-        <div key={key} className="btn-margin">
+        <div id={id} key={key} className="btn-margin">
             <button className={cssClassName} onClick={onClick}>{text}</button>
         </div>
     );
@@ -21,9 +30,12 @@ const Button = (props: ButtonProps) => {
 
 Button.defaultProps = {
     key: uuid(),
+    id: uuid(),
     text: "",
     onClick: () => {},
-    color: undefined,
-}
+    primary: false,
+    danger: false,
+    secondary: false,
+};
 
 export default Button;

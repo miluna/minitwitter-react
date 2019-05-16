@@ -79,4 +79,20 @@ export class UserService  implements CrudService<User>{
         });
     }
 
+    getCurrentUser(): Promise<User> {
+        return new Promise((resolve, reject) => {
+
+            const mocked: User = {
+                id: undefined,
+                picture: "",
+                name: "Pepesito",
+                username: "Pepe",
+                webpage: "https://google.com",
+                location: "Madrid",
+                description: "Soy un tipo duro",
+            };
+            resolve(mocked)
+        });
+    }
+
 }

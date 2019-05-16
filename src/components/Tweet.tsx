@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from './Icon';
 import { Post } from '../models/Post';
 import uuid from "uuid/v4";
+import UserInfo from "./UserInfo";
 
 
 interface TweetProps extends Post {
@@ -10,18 +11,39 @@ interface TweetProps extends Post {
     onDislike: Function,
     onDelete: Function,
     onUpdate: Function,
+    onRetweet: Function,
 }
 
 
 const Tweet = (props: TweetProps) => {
-    const { id, key, comments, content, error, likes, picture, timestamp, onLike, userId } = props;
+    const { id, key, comments, content, error, likes, picture, timestamp, onLike, onRetweet, userId } = props;
 
-    const heart = <Icon id={id} iconName="heart" checked={true} key={key} onClick={() => onLike(id)}/>;
-    const retweet = <Icon iconName="" />;
+    const heart = (
+        <Icon
+            id={id}
+            iconName="heart"
+            checked={true}
+            key={key}
+            onClick={() => onLike(id)}
+        />
+    );
+    const retweet = (
+        <Icon
+            iconName=""
+            onClick={() => onRetweet(id)}
+        />
+    );
 
     return (
         <div id={id} key={key} className="media">
-
+            <UserInfo userId={userId} pictureSize={3}/>
+            <div>
+                {content}
+            </div>
+            <div>
+                {heart}
+                {retweet}
+            </div>
         </div>
     );
 };
@@ -32,6 +54,7 @@ Tweet.defaultProps = {
     onDislike: () => {},
     onDelete: () => {},
     onUpdate: () => {},
+    onRetweet: () => {},
     id: uuid(),
     userId: undefined,
     content: "",

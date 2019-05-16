@@ -4,12 +4,13 @@ import {UserComment} from "./models/Comment";
 
 export const user: User = {
     id: "123",
+    username: "Pepesito",
     name: "Pepe Chulo",
     description: "El más malo del barrio",
     email: "kiedebarrio@gmail.com",
     location: "Vallekas",
     webpage: "www.reshulon.com",
-    picture: "https://pbs.twimg.com/media/BqxQ4GnIYAA4D4N.jpg"
+    picture: "",
 };
 
 export const allUsers: User[] = [user];

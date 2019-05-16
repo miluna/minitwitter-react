@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { User } from '../models/User';
 import uuid from "uuid/v4";
 import UserInfo from "./UserInfo";
-import avatar from "../media/avatar.jpg";
+import withUserInfo from "../context/withUserInfo";
 
 
 interface UserCardProps extends User {
@@ -16,6 +16,7 @@ const UserCard = (props: UserCardProps): ReactElement => {
     return (
         <div className="feed-element user-card" id={`usercard-${id}`} key={key} >
             <UserInfo
+                userId={id}
                 picture={picture}
                 username={username}
                 name={name}
@@ -36,10 +37,10 @@ UserCard.defaultProps = {
     id: uuid(),
     username: "Pepe",
     name: "Pepe Rodriguez",
-    picture: avatar,
+    picture: "",
     location: "Madrid",
     webpage: "https://www.google.com",
     description: "Soy un tipo duro"
 };
 
-export default UserCard;
+export default withUserInfo(UserCard);

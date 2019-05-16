@@ -1,9 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Post } from '../models/Post';
 import withServicesContext from "../context/withServicesContext";
 import TweetInput from "./TweetInput";
 import Tweet from "./Tweet";
+import * as mockedData from "../mocked_data";
 
 interface TweetsContainerProps {
   tweets: Post[],
@@ -26,7 +26,8 @@ const TweetsContainer = (props: TweetsContainerProps) => {
 };
 
 TweetsContainer.defaultProps = {
-    tweets: [],
+    // tweets: [],
+    tweets: mockedData.allPosts,
 };
 
 export default withServicesContext(TweetsContainer);

@@ -1,36 +1,71 @@
-import React, { ReactElement } from 'react';
+import React, {Component} from 'react';
 import uuid from "uuid/v4";
 import "../styles/UserInfo.css";
+import {User} from "../models/User";
+import {ContextProps} from "../context/ServicesContext";
+import withServicesContext from "../context/withServicesContext";
+import {Link} from "react-router-dom";
+import UserImage from "./UserImage";
 
-interface UserInfoProps {
+interface UserInfoProps extends ContextProps {
     key?: string;
-    picture: string,
-    username: string,
-    name: string,
+    userId: string,
+    picture?: string,
+    username?: string,
+    name?: string,
+    pictureSize?: number,
+}
+
+interface UserInfoState {
+    user: User
 }
 
 
-const UserInfo = (props: UserInfoProps): ReactElement => {
-    const { key, username, name, picture } = props;
+class UserInfo extends Component<UserInfoProps, UserInfoState> {
+    constructor(props: UserInfoProps) {
+        super(props);
+        const { name, picture, userId, username } = props;
+        this.state = {
+            user: {
+                id: userId,
+                name,
+                username,
+                picture,
+            }
+        }
+    }
 
-    return (
-        <div className="user-info" id={`userinfo-${username}-${key}`} key={key}>
-            <div className="user-picture">
-                <img src={picture} alt="user-picture"/>
+    componentDidMount(): void {
+        const { user } = this.state;
+        if (!user.username || !user.name) {
+            const { userService } = this.props;
+            if (user.id) {
+                console.log("recuperar info de usuario para id: " + user.id);
+                userService.getOne(user.id)
+                    .then(user => this.setState({user}))
+                    .catch(err => console.log(err))
+            }
+        }
+    }
+
+    render() {
+        const { key, pictureSize } = this.props;
+        const { user } = this.state;
+
+        console.log(this.state);
+        return (
+            <div className="user-info" id={`userinfo-${user.username}-${key}`} key={key || uuid()}>
+                <UserImage picture={user.picture} size={pictureSize} />
+                <div>
+                    <Link to={`/profile/${user.id}`}>
+                        <p>@{user.username}</p>
+                    </Link>
+                    <p>{user.name}</p>
+                </div>
             </div>
-            <div>
-                <p>@{username}</p>
-                <p>{name}</p>
-            </div>
-        </div>
-    );
-};
+        );
+    }
 
-UserInfo.defaultProps = {
-    key: uuid(),
-    picture: "",
-    username: "",
-    name: "",
-};
+}
 
-export default UserInfo;
+export default withServicesContext(UserInfo);

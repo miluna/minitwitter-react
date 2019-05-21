@@ -52,15 +52,14 @@ class UserInfo extends Component<UserInfoProps, UserInfoState> {
         const { key, pictureSize } = this.props;
         const { user } = this.state;
 
-        console.log(this.state);
         return (
             <div className="user-info" id={`userinfo-${user.username}-${key}`} key={key || uuid()}>
                 <UserImage picture={user.picture} size={pictureSize} />
                 <div>
                     <Link to={`/profile/${user.id}`}>
-                        <p>@{user.username}</p>
+                        <p className="subtitle">@{user.username}</p>
                     </Link>
-                    <p>{user.name}</p>
+                    <p className="subtitle">{user.name}</p>
                 </div>
             </div>
         );

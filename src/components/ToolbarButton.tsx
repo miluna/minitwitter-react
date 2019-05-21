@@ -25,6 +25,6 @@ ToolbarButton.defaultProps = {
     text: "",
     onClick: () => {},
     active: false,
-}
+};
 
 export default ToolbarButton;

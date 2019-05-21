@@ -29,20 +29,22 @@ const Tweet = (props: TweetProps) => {
     );
     const retweet = (
         <Icon
-            iconName=""
+            iconName="retweet"
             onClick={() => onRetweet(id)}
         />
     );
 
     return (
-        <div id={id} key={key} className="media">
-            <UserInfo userId={userId} pictureSize={3}/>
-            <div>
-                {content}
-            </div>
-            <div>
-                {heart}
-                {retweet}
+        <div id={id} key={key} className="hero">
+            <div className="hero-body">
+                <UserInfo userId={userId} pictureSize={3}/>
+                <div>
+                    {content}
+                </div>
+                <div>
+                    {heart}
+                    {retweet}
+                </div>
             </div>
         </div>
     );

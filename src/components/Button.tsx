@@ -9,18 +9,23 @@ interface ButtonProps {
     primary?: boolean,
     danger?: boolean,
     secondary?: boolean,
+    loading?: boolean,
+    error?: boolean,
 }
 
 const Button = (props: ButtonProps) => {
-    const { key, id, text, onClick, primary, danger, secondary } = props;
+    const { key, id, text, onClick, primary, danger, error, secondary, loading } = props;
 
-    const cssClassName = danger
+
+    let cssClassName = danger || error
         ? `button is-danger`
         : primary
             ? "button is-primary"
             : secondary
                 ? "button is-secondary"
                 : "button";
+    if (loading) cssClassName += " is-loading";
+
     return (
         <div id={id} key={key} className="btn-margin">
             <button className={cssClassName} onClick={onClick}>{text}</button>
@@ -36,6 +41,8 @@ Button.defaultProps = {
     primary: false,
     danger: false,
     secondary: false,
+    loading: false,
+    error: false,
 };
 
 export default Button;

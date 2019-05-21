@@ -18,7 +18,7 @@ const Input = (props: InputProps): ReactElement => {
     const { placeholder, type, value,
         onChange, onKeyPress, label, regExp, validation, errorMessage } = props;
 
-    const labelComponent = label ? <label>{label}</label> : null;
+    const labelComponent = label ? <label className="label">{label}</label> : null;
 
     const inputComponent = (
         <input 
@@ -43,7 +43,7 @@ const Input = (props: InputProps): ReactElement => {
         <div className="input-margin">
             {labelComponent}
             {inputComponent}
-            {error && <p style={{color: 'red'}}>{errorMessage}</p>}
+            {error && <p className="help" style={{color: 'red'}}>{errorMessage}</p>}
         </div>
     );
 };

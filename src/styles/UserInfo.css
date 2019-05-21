@@ -1,14 +1,13 @@
 .user-info {
-    width: 14rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 1rem;
 }
 
 .user-picture {
     width: 5rem;
     height: 5rem;
+    margin: 2%;
     border-radius: 50%;
     border: 0.1rem solid grey;
     overflow: hidden;

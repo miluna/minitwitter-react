@@ -16,6 +16,7 @@
     transition: 0.2s ease;
     background-color: transparent;
     margin: 0 1.5rem;
+    cursor: pointer;
 }
 
 .toolbar-btn:hover {

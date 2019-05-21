@@ -14,8 +14,9 @@ const Icon : FunctionComponent<IconProps> = ({ id, checked, iconName, key, onCli
 
     const style = {
         margin: "2%",
-        color: checked ? "red" : "blue"
-    }
+        color: checked ? "red" : "blue",
+        cursor: "pointer",
+    };
 
     return (
         <span className="icon" style={style} onClick={() => onClick(id)} key={key}>

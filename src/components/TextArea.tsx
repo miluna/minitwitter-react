@@ -4,6 +4,7 @@ import React, { ReactElement } from 'react';
 interface TextAreaProps {
     placeholder: string,
     value: string,
+    loading: boolean,
     onChange: any,
     onKeyPress: any,
     label: string,
@@ -14,19 +15,21 @@ interface TextAreaProps {
 
 
 const TextArea = (props: TextAreaProps): ReactElement => {
-    const { placeholder, value,
+    const { placeholder, value, loading,
         onChange, onKeyPress, label, regExp, validation, errorMessage } = props;
 
     const labelComponent = label ? <label>{label}</label> : null;
 
     const inputComponent = (
-        <textarea
-            className="textarea"
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            onKeyPress={onKeyPress}
-        />
+        <div className={loading ? "control is-large is-loading" : "control is-large"}>
+            <textarea
+                className="textarea has-fixed-size"
+                placeholder={placeholder}
+                value={value}
+                onChange={onChange}
+                onKeyPress={onKeyPress}
+            />
+        </div>
     );
 
     let error = false;

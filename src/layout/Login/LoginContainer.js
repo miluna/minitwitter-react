@@ -4,6 +4,7 @@ import Input from '../../components/Input';
 import AppLogo from '../../components/AppLogo';
 import Button from '../../components/Button';
 import { validatePasswordComplexity } from '../../utils/validation';
+import config from "../../config";
 
 const LoginContainer = ({ 
     mode, emailValue, passValue, pass2Value, passConfirmValue, 
@@ -16,7 +17,7 @@ const LoginContainer = ({
           placeholder="Insert your email"
           type="text"
           onChange={(e) => updateEmail(e.target.value)}
-          regExp={/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/}
+          regExp={config.REGEX_EMAIL}
           errorMessage="Email format incorrect"
           value={emailValue}
         />

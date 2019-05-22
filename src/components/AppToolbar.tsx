@@ -5,21 +5,29 @@ import "../styles/AppToolbar.css";
 import SearchUser from "./SearchUser";
 import { withRouter, RouteComponentProps } from 'react-router';
 import ToolbarButton from './ToolbarButton';
+import {NavLink} from "react-router-dom";
 
 interface AppToolbarProps extends RouteComponentProps {
     key: string,
 }
 
 const AppToolbar = (props: AppToolbarProps) => {
-    const { key, history, location } = props;
-    const isInProfilePath = new RegExp(".*profile.*").test(location.pathname);
-
+    const { key, location } = props;
+    const isInFeedPath = new RegExp("^/$").test(location.pathname);
+    const isInProfilePath = new RegExp("^/profile$").test(location.pathname);
     return (
         <div key={key} id="app-toolbar" className="app-toolbar">
             <SearchUser />
-            <AppLogo className="app-logo-toolbar" onClick={() => history.push("/")} />
+            <NavLink to="/">
+                <AppLogo className="app-logo-toolbar" />
+            </NavLink>
             <div className="toolbar-btns">
-                <ToolbarButton text="Profile" onClick={() => console.log("logout")} active={isInProfilePath}/>
+                <NavLink to="/">
+                    <ToolbarButton text="Feed" active={isInFeedPath}/>
+                </NavLink>
+                <NavLink to="/profile">
+                    <ToolbarButton text="Profile" active={isInProfilePath}/>
+                </NavLink>
                 <ToolbarButton text="Logout" onClick={() => console.log("logout")} />
             </div>
         </div>

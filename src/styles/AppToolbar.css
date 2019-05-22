@@ -17,6 +17,7 @@
     background-color: transparent;
     margin: 0 1.5rem;
     cursor: pointer;
+    color: black;
 }
 
 .toolbar-btn:hover {

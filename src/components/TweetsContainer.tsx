@@ -7,10 +7,11 @@ import * as mockedData from "../mocked_data";
 
 interface TweetsContainerProps {
   tweets: Post[],
+  showInput: boolean,
 }
 
 const TweetsContainer = (props: TweetsContainerProps) => {
-  const { tweets } = props;
+  const { tweets, showInput } = props;
   
   const tweetList = tweets.map((e: Post) => (
       <Tweet {...e} />
@@ -18,7 +19,7 @@ const TweetsContainer = (props: TweetsContainerProps) => {
 
   return (
       <div className="feed-element tweet-list">
-          <TweetInput />
+          {showInput && <TweetInput />}
           {tweetList}
       </div>
   );
@@ -28,6 +29,7 @@ const TweetsContainer = (props: TweetsContainerProps) => {
 TweetsContainer.defaultProps = {
     // tweets: [],
     tweets: mockedData.allPosts,
+    showInput: false,
 };
 
 export default withServicesContext(TweetsContainer);

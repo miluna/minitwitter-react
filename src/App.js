@@ -10,6 +10,7 @@ import { UserService } from './services/UserService';
 import { ServicesContextProvider } from './context/ServicesContext';
 import { CommentService } from './services/CommentService';
 import { PostService } from './services/PostService';
+import AppToolbar from "./components/AppToolbar";
 
 const services = {
     userService: new UserService(),
@@ -22,17 +23,19 @@ class App extends Component {
     render() {
         return (
             <Switch>
-                <ServicesContextProvider 
-                    userService={services.userService} 
+                <ServicesContextProvider
+                    userService={services.userService}
                     postService={services.postService}
                     commentService={services.commentService}
                 >
-                <LoggedInContextProvider 
-                    history={this.props.history} 
+                <LoggedInContextProvider
+                    history={this.props.history}
                     userService={services.userService}
                 >
+                    <AppToolbar />
+                    <Route exact path="/" component={Feed} />
                     <Route exact path="/login" component={Login} />
-                    <ProtectedRoute exact path="/" component={Feed} />
+                    <Route exact path="/profile" component={Profile} />
                     <Route exact path="/profile/:id" component={Profile} />
                 </LoggedInContextProvider>
                 </ServicesContextProvider>

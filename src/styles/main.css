@@ -8,6 +8,26 @@
     --item-color-darker: rgba(200, 200, 200, 0.11);
 }
 
+a {
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
 .app-logo {
     height: 18vh;
     width: 8vw;

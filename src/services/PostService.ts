@@ -1,5 +1,6 @@
 import {CrudService} from "./CrudService";
 import {Post} from "../models/Post";
+import * as mockedData from "../mocked_data";
 
 export class PostService implements CrudService<Post>{
     deleteOne(id: string): void {
@@ -27,5 +28,15 @@ export class PostService implements CrudService<Post>{
 
     unlikePost(postId: string, userId: string): void {
 
+    }
+
+    getAllFromUser(userId: string) : Promise<Post[]> {
+        return new Promise((resolve, reject) => resolve([mockedData.post2]));
+    }
+
+    getAllFromCurrentUser(): Promise<Post[]> {
+        return new Promise((resolve, reject) => {
+            resolve([mockedData.post])
+        });
     }
 }

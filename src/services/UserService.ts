@@ -1,7 +1,6 @@
 import {CrudService} from "./CrudService";
 import {User} from "../models/User";
-import {user as mockedUser}  from '../mocked_data';
-import {allUsers as allmockedUsers} from "../mocked_data";
+import * as mockedData from "../mocked_data";
 import { Authentication } from "../models/Authentication";
 import { validateEmail, validatePasswordComplexity, validateLength } from "../utils/validation";
 
@@ -10,11 +9,11 @@ export class UserService  implements CrudService<User>{
     }
 
     getAll(): Promise<Array<User>> {
-        return new Promise((resolve, reject) => resolve(allmockedUsers));
+        return new Promise((resolve, reject) => resolve(mockedData.allUsers));
     }
 
     getOne(id: string): Promise<User> {
-        return new Promise((resolve, reject) => resolve(mockedUser));
+        return new Promise((resolve, reject) => resolve(mockedData.user2));
     }
 
     postOne(object: User): Promise<User> {
@@ -36,7 +35,7 @@ export class UserService  implements CrudService<User>{
     }
 
     updateOne(id: string, object: User): Promise<User> {
-        return new Promise((resolve, reject) => resolve(mockedUser));
+        return new Promise((resolve, reject) => resolve({}));
     }
 
     login(email: string, password: string): Promise<Authentication> {
@@ -81,17 +80,7 @@ export class UserService  implements CrudService<User>{
 
     getCurrentUser(): Promise<User> {
         return new Promise((resolve, reject) => {
-
-            const mocked: User = {
-                id: undefined,
-                picture: "",
-                name: "Pepesito",
-                username: "Pepe",
-                webpage: "https://google.com",
-                location: "Madrid",
-                description: "Soy un tipo duro",
-            };
-            resolve(mocked)
+            resolve(mockedData.user)
         });
     }
 

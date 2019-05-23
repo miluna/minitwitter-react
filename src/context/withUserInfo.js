@@ -4,7 +4,7 @@ import { LoggedInContext } from "./LoggedInContext";
 const withUserInfo = (Component) => {
   return (props) => (
     <LoggedInContext.Consumer>
-      {context =>  <Component {...props} {...context.user} />}
+      {context =>  <Component {...props} user={context.user} />}
     </LoggedInContext.Consumer>
   )
 };

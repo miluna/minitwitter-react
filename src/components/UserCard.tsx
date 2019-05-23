@@ -16,7 +16,7 @@ const UserCard = (props: UserCardProps): ReactElement => {
     return (
         <div className="feed-element user-card" id={`usercard-${id}`} key={key} >
             <UserInfo
-                userId={id}
+                id={id}
                 picture={picture}
                 username={username}
                 name={name}
@@ -34,13 +34,6 @@ const UserCard = (props: UserCardProps): ReactElement => {
 
 UserCard.defaultProps = {
     key: uuid(),
-    id: uuid(),
-    username: "Pepe",
-    name: "Pepe Rodriguez",
-    picture: "",
-    location: "Madrid",
-    webpage: "https://www.google.com",
-    description: "Soy un tipo duro"
 };
 
 export default withUserInfo(UserCard);

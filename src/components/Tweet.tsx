@@ -37,7 +37,7 @@ const Tweet = (props: TweetProps) => {
     return (
         <div id={id} key={key} className="hero">
             <div className="hero-body">
-                <UserInfo userId={userId} pictureSize={3}/>
+                <UserInfo id={userId} pictureSize={3}/>
                 <div>
                     {content}
                 </div>

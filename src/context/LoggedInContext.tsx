@@ -3,7 +3,9 @@ import { User } from "../models/User";
 import { RouteChildrenProps } from "react-router";
 import { UserService } from "../services/UserService";
 import { Authentication } from "../models/Authentication";
+import * as mockedData from "../mocked_data";
 import avatar from "../media/avatar.jpg";
+import {user} from "../mocked_data";
 
 // register context
 export const LoggedInContext = React.createContext({});
@@ -28,7 +30,7 @@ export class LoggedInContextProvider extends Component<ContextProps, ContextStat
     constructor(props: ContextProps) {
         super(props);
         this.state = {
-            user: {},
+            user: mockedData.user,
             isAuthenticated: true,
             login: this.login,
             logout: this.logout,

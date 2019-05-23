@@ -1,5 +1,6 @@
 import {CrudService} from "./CrudService";
 import {UserComment} from "../models/Comment";
+import * as mockedData from "../mocked_data";
 
 export class CommentService implements CrudService<UserComment>{
     deleteOne(id: string): void {
@@ -21,4 +22,14 @@ export class CommentService implements CrudService<UserComment>{
         return new Promise((resolve, reject) => resolve({}));
     }
 
+    getAllFromUser(userId: string): Promise<UserComment[]> {
+        return new Promise((resolve, reject) => resolve([]));
+    }
+
+    getAllFromCurrentUser(): Promise<UserComment[]> {
+        return new Promise((resolve, reject) => {
+            const comments: UserComment[] = [mockedData.comment];
+            resolve(comments)
+        });
+    }
 }

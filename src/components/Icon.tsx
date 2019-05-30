@@ -16,6 +16,9 @@ const Icon : FunctionComponent<IconProps> = ({ id, checked, iconName, key, onCli
         margin: "2%",
         color: checked ? "red" : "blue",
         cursor: "pointer",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
     };
 
     return (
@@ -24,5 +27,10 @@ const Icon : FunctionComponent<IconProps> = ({ id, checked, iconName, key, onCli
         </span>
     );
 };
+
+Icon.defaultProps = {
+    onClick: () => {},
+};
+
 
 export default Icon;

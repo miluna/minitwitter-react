@@ -9,7 +9,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {},
+      user: this.props.user,
       tweets: [],
     }
   }
@@ -44,7 +44,7 @@ class Profile extends Component {
     return (
       <div>
         <div className="feed-container">
-          <UserCard {...user} />
+          <UserCard user={user} />
           {this.isUserProfile()
             ? <TweetsContainer showInput tweets={tweets} />
             : <TweetsContainer tweets={tweets} />

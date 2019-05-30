@@ -1,13 +1,15 @@
 import React from "react";
 import avatar from "../media/avatar.jpg";
+import Loading from "./Loading";
 
 interface UserImageProps {
     picture?: string,
     size?: number,
+    loading: boolean,
 }
 
 const UserImage = (props: UserImageProps) => {
-    const { picture, size } = props;
+    const { picture, size, loading } = props;
 
     const pic = (!picture || picture === "")
         ? avatar
@@ -20,7 +22,10 @@ const UserImage = (props: UserImageProps) => {
 
     return (
         <div style={sizeStyle} className="user-picture">
-            <img src={pic} alt="user-picture"/>
+            {loading
+                ? <Loading />
+                : <img src={pic} alt="user-picture"/>
+            }
         </div>
     );
 };
@@ -28,6 +33,7 @@ const UserImage = (props: UserImageProps) => {
 UserImage.defaultProps = {
     picture: avatar,
     size: 5,
+    loading: false,
 };
 
 export default UserImage;

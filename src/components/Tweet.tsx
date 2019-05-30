@@ -36,12 +36,12 @@ const Tweet = (props: TweetProps) => {
 
     return (
         <div id={id} key={key} className="hero">
-            <div className="hero-body">
+            <div className="hero-body" style={{ padding: '0'}}>
                 <UserInfo id={userId} pictureSize={3}/>
                 <div>
                     {content}
                 </div>
-                <div>
+                <div className="columns">
                     {heart}
                     {retweet}
                 </div>

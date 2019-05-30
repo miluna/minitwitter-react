@@ -7,6 +7,9 @@
 .user-picture {
     width: 5rem;
     height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 2%;
     border-radius: 50%;
     border: 0.1rem solid grey;

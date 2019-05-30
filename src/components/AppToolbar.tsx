@@ -15,6 +15,10 @@ const AppToolbar = (props: AppToolbarProps) => {
     const { key, location } = props;
     const isInFeedPath = new RegExp("^/$").test(location.pathname);
     const isInProfilePath = new RegExp("^/profile$").test(location.pathname);
+    const isInLoginPath = new RegExp("^/login$").test(location.pathname);
+
+    if (isInLoginPath) return <React.Fragment />;
+
     return (
         <div key={key} id="app-toolbar" className="app-toolbar">
             <SearchUser />

@@ -33,7 +33,7 @@ class App extends Component {
                     userService={services.userService}
                 >
                     <AppToolbar />
-                    <Route exact path="/" component={Feed} />
+                    <ProtectedRoute exact path="/" component={Feed} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/profile" component={Profile} />
                     <Route exact path="/profile/:id" component={Profile} />

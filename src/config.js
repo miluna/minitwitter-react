@@ -1,5 +1,5 @@
 const config = {
-  WS_URL: process.env.WS_URL || "http://localhost/",
+  WS_URL: process.env.WS_URL || "http://localhost:8080",
   REGEX_TWEET: /^.{0,125}$/,
   REGEX_EMAIL: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
 };

@@ -4,8 +4,7 @@ import { RouteChildrenProps } from "react-router";
 import { UserService } from "../services/UserService";
 import { Authentication } from "../models/Authentication";
 import * as mockedData from "../mocked_data";
-import avatar from "../media/avatar.jpg";
-import {user} from "../mocked_data";
+import {deleteToken, getToken, saveToken} from "../services/storage";
 
 // register context
 export const LoggedInContext = React.createContext({});
@@ -31,7 +30,7 @@ export class LoggedInContextProvider extends Component<ContextProps, ContextStat
         super(props);
         this.state = {
             user: mockedData.user,
-            isAuthenticated: true,
+            isAuthenticated: false,
             login: this.login,
             logout: this.logout,
             changePassword: this.changePassword,
@@ -46,7 +45,7 @@ export class LoggedInContextProvider extends Component<ContextProps, ContextStat
         userService.login(email, password)
             .then(auth => {
                 this.setState({isAuthenticated: true});
-                if (auth.Authorization) localStorage.setItem("token", auth.Authorization);
+                if (auth.Authorization) saveToken(auth.Authorization);
                 userService.getCurrentUser()
                     .then(user => {
                         this.setState({ user });
@@ -59,10 +58,10 @@ export class LoggedInContextProvider extends Component<ContextProps, ContextStat
     };
 
     changePassword = (email: string, password: string, password2: string, passwordConfirm: string) => {
-        const { userService } = this.props;
-        userService.changePassword(email, password, password2, passwordConfirm)
-            .then(user => console.log(user))
-            .catch(user => this.setState({error: user.error}))
+        // const { userService } = this.props;
+        // userService.changePassword(email, password, password2, passwordConfirm)
+        //     .then(user => console.log(user))
+        //     .catch(user => this.setState({error: user.error}))
     };
 
     resetPassword = (email: string) => {
@@ -81,21 +80,21 @@ export class LoggedInContextProvider extends Component<ContextProps, ContextStat
     };
 
     logout = () => {
-        localStorage.removeItem("token");
+        deleteToken();
         this.setState({isAuthenticated: false, user: {}});
     };
 
     componentDidMount() {
-        // const token = localStorage.getItem("token");
-        // if (token !== null) this.setState({isAuthenticated: true});
-        // else this.setState({isAuthenticated: false});
         const { userService } = this.props;
-
-        userService.getCurrentUser()
-            .then(user => {
-                this.setState({user});
-            })
-            .catch(err => console.log(err));
+        const token = getToken();
+        if (token) {
+            this.setState({isAuthenticated: true});
+            userService.getCurrentUser()
+                .then(user => {
+                    this.setState({user});
+                })
+                .catch(err => console.log(err));
+        }
     }
 
     render() {

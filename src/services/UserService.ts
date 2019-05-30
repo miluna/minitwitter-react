@@ -1,19 +1,34 @@
 import {CrudService} from "./CrudService";
+import axios from "axios";
 import {User} from "../models/User";
-import * as mockedData from "../mocked_data";
 import { Authentication } from "../models/Authentication";
 import { validateEmail, validatePasswordComplexity, validateLength } from "../utils/validation";
+import config from "../config";
+import {getAuthHeaders} from "./storage";
 
 export class UserService  implements CrudService<User>{
     deleteOne(id: string): void {
+        const url = `${config.WS_URL}/users/${id}`;
+        const headers = getAuthHeaders();
+        axios.delete(url, { headers });
     }
 
     getAll(): Promise<Array<User>> {
-        return new Promise((resolve, reject) => resolve(mockedData.allUsers));
+        return new Promise((resolve, reject) => {
+            const url = `${config.WS_URL}/users`;
+            axios.get(url)
+                .then( res => resolve(res.data))
+                .catch((err: any) => reject(err));
+        });
     }
 
     getOne(id: string): Promise<User> {
-        return new Promise((resolve, reject) => resolve(mockedData.user2));
+        return new Promise((resolve, reject) => {
+            const url = `${config.WS_URL}/users/${id}`;
+            axios.get(url)
+                .then( res => resolve(res.data))
+                .catch((err: any) => reject(err));
+        });
     }
 
     postOne(object: User): Promise<User> {
@@ -29,13 +44,23 @@ export class UserService  implements CrudService<User>{
             } else if (!validatePasswordComplexity(object.password)) {
                 reject({error: "Password should contain uppercase, lowercase, number and a special character"});
             } else {
-                // API CALL
+                const url = `${config.WS_URL}/users`;
+                const headers = getAuthHeaders();
+                axios.post(url, object, { headers })
+                    .then( res => resolve(res.data))
+                    .catch((err: any) => reject(err));
             }
         });
     }
 
     updateOne(id: string, object: User): Promise<User> {
-        return new Promise((resolve, reject) => resolve({}));
+        return new Promise((resolve, reject) => {
+            const url = `${config.WS_URL}/users/${id}`;
+            const headers = getAuthHeaders();
+            axios.put(url, object, { headers })
+                .then( res => resolve(res.data))
+                .catch((err: any) => reject(err));
+        });
     }
 
     login(email: string, password: string): Promise<Authentication> {
@@ -45,14 +70,15 @@ export class UserService  implements CrudService<User>{
             } else if (!validatePasswordComplexity(password)) {
                 reject({error: "Password should contain uppercase, lowercase, number and a special character"});
             } else {
-                // API CALL
+                const url = `${config.WS_URL}/users/login`;
+                axios.post(url, { email, password })
+                    .then( res => resolve(res.data))
+                    .catch((err: any) => reject(err));
             }
         });
-
-        // return new Promise((resolve, reject) => reject({error: "Pakete"}));
     }
 
-    changePassword(email: string, password: string, password2: string, passwordConfirm: string): Promise<User> {
+    changePassword(id: string, email: string, password: string, password2: string, passwordConfirm: string): Promise<User> {
         return new Promise((resolve, reject) => {
             if (!validateEmail(email)) {
                 reject({error: "Email format incorrect"});
@@ -63,7 +89,11 @@ export class UserService  implements CrudService<User>{
             } else if (!validatePasswordComplexity(password2)) {
                 reject({error: "Password should contain uppercase, lowercase, number and a special character"});
             } else {
-                // API CALL
+                const url = `${config.WS_URL}/users/${id}/change-password`;
+                const headers = getAuthHeaders();
+                axios.post(url, { email, password, password2 }, { headers })
+                    .then( res => resolve(res.data))
+                    .catch((err: any) => reject(err));
             }
         });
     }
@@ -73,15 +103,21 @@ export class UserService  implements CrudService<User>{
             if (!validateEmail(email)) {
                 reject({error: "Email format incorrect"});
             } else {
-                // API CALL
+                const url = `${config.WS_URL}/users/reset-password`;
+                axios.post(url, { email })
+                    .then( res => resolve(res.data))
+                    .catch((err: any) => reject(err));
             }
         });
     }
 
     getCurrentUser(): Promise<User> {
         return new Promise((resolve, reject) => {
-            resolve(mockedData.user)
+            const url = `${config.WS_URL}/currentuser`;
+            const headers = getAuthHeaders();
+            axios.get(url, { headers })
+                .then( res => resolve(res.data))
+                .catch((err: any) => reject(err));
         });
     }
-
 }

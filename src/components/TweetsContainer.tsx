@@ -8,10 +8,11 @@ import * as mockedData from "../mocked_data";
 interface TweetsContainerProps {
   tweets: Post[],
   showInput: boolean,
+  onSendTweet: Function,
 }
 
 const TweetsContainer = (props: TweetsContainerProps) => {
-  const { tweets, showInput } = props;
+  const { tweets, showInput, onSendTweet } = props;
   
   const tweetList = tweets.map((e: Post) => (
       <Tweet {...e} />
@@ -19,7 +20,7 @@ const TweetsContainer = (props: TweetsContainerProps) => {
 
   return (
       <div className="feed-element tweet-list">
-          {showInput && <TweetInput />}
+          {showInput && <TweetInput onSendTweet={onSendTweet} />}
           {tweetList}
       </div>
   );

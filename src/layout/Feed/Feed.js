@@ -13,6 +13,10 @@ class Feed extends Component {
   }
 
   componentDidMount(){
+    this.updateTweets();
+  }
+
+  updateTweets = () => {
     const { postService } = this.props;
     postService.getAll()
       .then(tweets => {
@@ -28,7 +32,7 @@ class Feed extends Component {
       <div>
         <div className="feed-container">
           <UserCard user={user} />
-          <TweetsContainer showInput tweets={tweets}/>
+          <TweetsContainer showInput tweets={tweets} onSendTweet={this.updateTweets} />
         </div>
       </div>
     );

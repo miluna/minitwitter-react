@@ -85,6 +85,10 @@ export class LoggedInContextProvider extends Component<ContextProps, ContextStat
     };
 
     componentDidMount() {
+        this.checkLogin();
+    }
+
+    checkLogin = () => {
         const { userService } = this.props;
         const token = getToken();
         if (token) {

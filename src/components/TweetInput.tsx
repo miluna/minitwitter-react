@@ -6,14 +6,16 @@ import {ContextProps} from "../context/ServicesContext";
 import {Post} from "../models/Post";
 import config from "../config";
 
-
+interface TweetInputProps extends ContextProps {
+    onSendTweet: Function,
+}
 interface TweetInputState {
     text: string,
     error: string,
     loading: boolean,
 }
 
-class TweetInput extends Component<ContextProps,TweetInputState> {
+class TweetInput extends Component<TweetInputProps,TweetInputState> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -25,14 +27,18 @@ class TweetInput extends Component<ContextProps,TweetInputState> {
     updateText = (text: string) => this.setState({text});
     sendTweet = () => {
         const { text } = this.state;
-        const { postService } = this.props;
+        const { postService, onSendTweet } = this.props;
         if (text !== "" && config.REGEX_TWEET.test(text)) {
             const post: Post = {
                 content: text,
             };
             this.setState({loading: true, error:""});
             postService.postOne(post)
-                .then(success => console.log(success))
+                .then(success => {
+                    console.log(success);
+                    onSendTweet();
+                    this.setState({ text: "", loading: false });
+                })
                 .catch(error => this.setState({error, loading: false}));
         } else {
             this.setState({error: "Your tweet is empty, too long or has invalid characters!!"});
@@ -51,7 +57,14 @@ class TweetInput extends Component<ContextProps,TweetInputState> {
                     onChange={(e: any) => this.updateText(e.target.value)}
                     label="Insert your tweet"
                 />
-                <Button id="tweet-btn" text="Send" primary error={error !== ""} loading={loading} onClick={this.sendTweet}/>
+                <Button 
+                    id="tweet-btn" 
+                    text="Send" 
+                    primary
+                    error={error !== ""} 
+                    loading={loading} 
+                    onClick={this.sendTweet}
+                />
                 {error !== "" &&
                     <p style={{ color: 'red' }}>{error}</p>
                 }

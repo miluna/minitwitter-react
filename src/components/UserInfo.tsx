@@ -28,8 +28,12 @@ class UserInfo extends Component<UserInfoProps, UserInfoState> {
     }
 
     componentDidMount(): void {
+        this.getUserInfo();
+    }
+
+    getUserInfo = () => {
         const { id, userService } = this.props;
-        console.log("lol")
+
         if (id) {
             userService.getOne(id)
                 .then(loadUser => {
